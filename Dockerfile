@@ -7,5 +7,5 @@ WORKDIR ${HOME}
 RUN echo "export TERM=xterm" >> .bash_profile
 ENV container docker
 STOPSIGNAL SIGRTMIN+3
-RUN systemctl disable agetty.target systemd-udevd.service
+RUN systemctl disable getty.target
 CMD [ "/sbin/init" ]
