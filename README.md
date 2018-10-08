@@ -48,11 +48,12 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 ```
-すべてのサービスをdisable する。この設定がないと、複数のコンテナを同時起動したときに agetty が CPU を専有する症状が出る場合がある。ただし、上記で disable したユニットに対して
+すべてのサービスをdisable する。参考：https://hub.docker.com/_/centos/
+この設定がないと、複数のコンテナを同時起動したときに agetty が CPU を専有する症状が出る場合がある。ただし、上記で disable したものでも、 preset が enable の場合、ユニットに対して
 ```
 systemctl is-enabled ユニット名
 ```
-を実行すると true が変えるので注意を要する。特に ansible の service モジュールで enable すると、上記のコマンドで冪等性を確保するようにコーディングされていて、 enable にならない。たとえば、
+を実行すると true が返るので注意を要する。特に ansible の service モジュールで enable すると、上記のコマンドで冪等性を確保するようにコーディングされていて、 enable にならない。たとえば、
 ```
 service: name=rsyslog enabled=yes
 ```
