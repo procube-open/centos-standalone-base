@@ -48,8 +48,8 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 ```
-すべてのサービスをdisable する。参考：https://hub.docker.com/_/centos/
-この設定がないと、複数のコンテナを同時起動したときに agetty が CPU を専有する症状が出る場合がある。ただし、上記で disable したものでも、 preset が enable の場合、ユニットに対して
+[centos のコード](https://hub.docker.com/_/centos/)を参考にすべてのサービスをdisable する。
+この設定がないと、[複数のコンテナを同時起動したときに agetty が CPU を専有する症状が出る場合がある](https://blog.nekonekonekko.net/?p=374)。ただし、上記で disable したものでも、 preset が enable の場合、ユニットに対して
 ```
 systemctl is-enabled ユニット名
 ```
